@@ -14,6 +14,6 @@ class Currency extends Model
 
     public function rates(): HasManyThrough
     {
-        return $this->hasManyThrough(Rate::class, 'currencies', 'id', 'origin_currency_id')->orWhere('destination_currency_id', $this->id);
+        return $this->hasManyThrough(Rate::class, 'currencies', 'id', 'first_currency_id')->orWhere('second_currency_id', $this->id);
     }
 }

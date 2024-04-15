@@ -25,20 +25,20 @@ class CurrencySeeder extends Seeder
         );
 
         Rate::create([
-            'origin_currency_id' => $btc->id,
-            'destination_currency_id' => $tether->id,
+            'first_currency_id' => $btc->id,
+            'second_currency_id' => $tether->id,
             'ratio' => 1,
             'internal' => false,
         ]);
         Rate::create([
-            'origin_currency_id' => $btc->id,
-            'destination_currency_id' => $irr->id,
+            'first_currency_id' => $btc->id,
+            'second_currency_id' => $irr->id,
             'ratio' => 1,
             'internal' => true,
         ]);
         Rate::create([
-            'origin_currency_id' => $tether->id,
-            'destination_currency_id' => $irr->id,
+            'first_currency_id' => $tether->id,
+            'second_currency_id' => $irr->id,
             'ratio' => 1,
             'internal' => true,
 

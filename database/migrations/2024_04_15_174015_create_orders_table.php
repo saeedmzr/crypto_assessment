@@ -16,7 +16,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(Rate::class)->constrained();
             $table->string("tracking_code")->nullable();
-            $table->float("amount");
+            $table->float("amount_paid");
+            $table->float("amount_received")->default(0);
             $table->float("rate_state_value")->comment("rate value at time order was created.");
             $table->string("email_address");
             $table->string("status")->default(OrderStatusEnum::getDefaultStatus());

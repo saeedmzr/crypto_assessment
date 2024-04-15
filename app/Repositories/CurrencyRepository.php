@@ -15,4 +15,9 @@ class CurrencyRepository extends BaseRepository
     {
         $this->model = $model;
     }
+
+    public function findBySymbol(string $symbol)
+    {
+        return $this->model->where("symbol", $symbol)->first();
+    }
 }

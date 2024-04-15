@@ -12,20 +12,20 @@ return new class extends Migration {
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('origin_currency_id');
-            $table->unsignedBigInteger('destination_currency_id');
+            $table->unsignedBigInteger('first_currency_id');
+            $table->unsignedBigInteger('second_currency_id');
             $table->float("ratio")->default(1);
             $table->boolean("internal")->default(false);
 
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('origin_currency_id')
+            $table->foreign('first_currency_id')
                 ->references('id')
                 ->on('currencies')
                 ->onDelete('cascade');
 
-            $table->foreign('destination_currency_id')
+            $table->foreign('second_currency_id')
                 ->references('id')
                 ->on('currencies')
                 ->onDelete('cascade');

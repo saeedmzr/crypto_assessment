@@ -35,10 +35,10 @@ class UpdatingRatesCommand extends Command
         $cryptoService = new CryptoService(new FCSApi());
         foreach ($rates as $rate) {
             if (!$rate->internal) {
-                $firstSymbol = $rate->originCurrency->symbol;
-                $secondSymbol = $rate->destinationCurrency->symbol;
+                $firstSymbol = $rate->firstCurrency->symbol;
+                $secondSymbol = $rate->secondCurrency->symbol;
                 $ratio = $cryptoService->getRate($firstSymbol, $secondSymbol);
-                $rate->update(["ratio" => $ratio]);
+                $rateRepository->updateRateRecord($rate->firstCurrency->id, $rate->secondCurrency->id, $ratio);
             }
         }
 

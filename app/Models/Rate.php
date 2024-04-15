@@ -18,13 +18,13 @@ class Rate extends Model
         return $this->hasMany(Order::class);
     }
 
-    public function originCurrency(): BelongsTo
+    public function firstCurrency(): BelongsTo
     {
-        return $this->belongsTo(Currency::class, 'origin_currency_id');
+        return $this->belongsTo(Currency::class, 'first_currency_id');
     }
 
-    public function destinationCurrency(): BelongsTo
+    public function secondCurrency(): BelongsTo
     {
-        return $this->belongsTo(Currency::class, 'destination_currency_id');
+        return $this->belongsTo(Currency::class, 'second_currency_id');
     }
 }

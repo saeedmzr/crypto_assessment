@@ -48,8 +48,8 @@ class StoreOrderRequest extends FormRequest
 
         return [
             'email' => 'required|string|email',
-            'origin_currency_id' => 'required|exists:currencies,id',
-            'destination_currency_id' => 'nullable||exists:currencies,id',
+            'first_symbol' => 'required|exists:currencies,symbol',
+            'second_symbol' => 'nullable|exists:currencies,symbol|distinct:first_symbol',
             'amount' => 'nullable|alpha_dash|max:32',
         ];
     }
