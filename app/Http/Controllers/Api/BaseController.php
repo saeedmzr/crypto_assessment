@@ -9,13 +9,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Info(
- *     description="This is an example API for customer management",
+ *     description="This is an example API for order management",
  *     version="1.0.0",
- *     title="Customer Management API"
+ *     title="Order Management API"
  * )
  * @OA\Server(
  *       url="/api/",
- *       description="Base path for all Customer CRUD API endpoints"
+ *       description="Base path for all Order CRUD API endpoints"
  *   )
  */
 class BaseController extends Controller
