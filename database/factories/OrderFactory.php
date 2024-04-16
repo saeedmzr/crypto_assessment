@@ -24,8 +24,7 @@ class OrderFactory extends Factory
             'amount_received' => $this->faker->randomDigit(6),
             'email_address' => $this->faker->unique()->safeEmail(),
             'rate_state_value' => $this->faker->randomDigitNotZero(),
-            'PhoneNumber' => $phoneNumberInt,
-            'BankAccountNumber' => $this->faker->numerify('####-####-####-####'),
+            'tracking_code' => $this->faker->unique()->ean8(),
         ];
     }
 }
