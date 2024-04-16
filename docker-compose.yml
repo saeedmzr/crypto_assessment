@@ -1,18 +1,14 @@
-version: "3.8"
+version: "3.9"
 services:
     # Application
     app:
-        build:
-            context: ./docker/services/app
-            dockerfile: app.dockerfile
+        build: ./docker/services/app
         working_dir: /var/www
         volumes:
-            - ./src:/var/www
+            - ./:/var/www
     # Web Server
     web:
-        build:
-            context: ./docker/services/web
-            dockerfile: web.dockerfile
+        build: ./docker/services/web
         working_dir: /var/www
         volumes:
             - ./src:/var/www
@@ -20,7 +16,7 @@ services:
             - "8000:80"
     # Database
     database:
-        image: mysql:8.0.25
+        image: docker.arvancloud.ir/mysql:8.0.25
         volumes:
             - ./docker/volumes/mysql:/var/lib/mysql
         environment:
@@ -32,7 +28,7 @@ services:
             - "3307:3306"
     # Database Management
     pma:
-        image: phpmyadmin:5.1
+        image: docker.arvancloud.ir/phpmyadmin:5.1
         environment:
             - PMA_ARBITRARY=1
             - PMA_HOST=${DB_HOST}
@@ -45,7 +41,7 @@ services:
             - "8888:80"
     # Caching
     redis:
-        image: redis:alpine
+        image: docker.arvancloud.ir/redis:alpine
         volumes:
             - ./docker/volumes/redis:/data
         ports:
