@@ -8,36 +8,26 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * @OA\Schema(
- *     schema="CreateCustomerSchema",
+ *     schema="CreateOrderSchema",
  *     @OA\Property(
- *         property="Firstname",
+ *         property="email",
  *         type="string",
- *         description="customer's Firstname"
+ *         description="order's email address"
  *     ),
  *     @OA\Property(
- *         property="Lastname",
+ *         property="first_symbol",
  *         type="string",
- *         description="customer's Lastname"
+ *         description="currency to get"
  *     ),
  *     @OA\Property(
- *         property="DateOfBirth",
- *         type="date",
- *         description="customer's DateOfBirth"
+ *         property="second_symbol",
+ *         type="string",
+ *         description="currency to pay"
  *     ),
  *    @OA\Property(
- *          property="BankAccountNumber",
- *          type="string",
- *          description="customer's BankAccountNumber"
- *      ),
- *     @OA\Property(
- *         property="PhoneNumber",
- *         type="phonenumber",
- *         description="customer's PhoneNumber"
- *     ),
- *          @OA\Property(
- *          property="Email",
- *          type="email",
- *          description="customer's Email"
+ *          property="amount",
+ *          type="integer",
+ *          description="amount of second_symbol to pay and first_symbol to receive"
  *      ),
  * )
  */
@@ -49,8 +39,8 @@ class StoreOrderRequest extends FormRequest
         return [
             'email' => 'required|string|email',
             'first_symbol' => 'required|exists:currencies,symbol',
-            'second_symbol' => 'nullable|exists:currencies,symbol|distinct:first_symbol',
-            'amount' => 'nullable|alpha_dash|max:32',
+            'second_symbol' => 'required|exists:currencies,symbol|distinct:first_symbol',
+            'amount' => 'required',
         ];
     }
 }

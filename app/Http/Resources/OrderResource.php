@@ -7,51 +7,41 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="CustomerSchema",
+ *     schema="OrderSchema",
  *     @OA\Property(
- *         property="id",
+ *         property="tracking_code",
  *         type="integer",
- *         description="Customer ID"
+ *         description="Order tracking_code"
  *     ),
  *     @OA\Property(
- *         property="Firstname",
+ *         property="amount_paid",
  *         type="string",
- *         description="Customer Firstname"
+ *         description="amount_paid"
  *     ),
  *     @OA\Property(
- *         property="Lastname",
+ *         property="amount_received",
  *         type="string",
- *         description="Customer Lastname"
+ *         description="amount_received"
  *     ),
  *      @OA\Property(
- *         property="DateOfBirth",
+ *         property="status",
  *         type="string",
- *         description="Customer DateOfBirth"
+ *         description="status"
  *     ),
  *     @OA\Property(
- *         property="Email",
+ *         property="email_address",
  *         type="string",
- *         description="Customer Email"
+ *         description="Order email address"
  *     ),
- *     @OA\Property(
- *          property="PhoneNumber",
- *          type="string",
- *          description="Customer PhoneNumber"
- *      ),
- *     @OA\Property(
- *           property="BankAccountNumber",
- *           type="string",
- *           description="Customer BankAccountNumber"
- *       ),
  *     @OA\Property(
  *         property="updated_at",
  *         type="datetime",
- *         description="Customer updated_at datetime"
+ *         description="Order updated_at datetime"
  *     ),
  *     @OA\Property(
  *         property="created_at",
  *         type="datetime",
- *         description="Customer created_at datetime"
+ *         description="Order created_at datetime"
  *     ),
  * )
  */
@@ -61,9 +51,10 @@ class OrderResource extends JsonResource
     {
         return [
             'tracking_code' => $this->tracking_code,
-            'amount_paid' => $this->amount_paid . ': ' . $this->rate->secondCurrency->symbol ?? '',
-            'amount_received' => $this->amount_received . ': ' . $this->rate->firstCurrency->symbol ?? '',
+            'amount_paid' => $this->amount_paid . ': ' . $this->rate->sourceCurrency->symbol ?? '',
+            'amount_received' => $this->amount_received . ': ' . $this->rate->currency->symbol ?? '',
             'status' => $this->status,
+            'email_address' => $this->email_address,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
