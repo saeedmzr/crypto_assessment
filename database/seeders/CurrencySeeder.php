@@ -15,32 +15,30 @@ class CurrencySeeder extends Seeder
     public function run(): void
     {
         $btc = Currency::query()->create(
-            ["title" => "Bitcoin", "symbol" => "BTC"]
+            ["name" => "Bitcoin", "symbol" => "BTC"]
         );
         $tether = Currency::query()->create(
-            ["title" => "Tether", "symbol" => "USDT"]
+            ["name" => "Tether", "symbol" => "USDT"]
         );
         $irr = Currency::query()->create(
-            ["title" => "Rial", "symbol" => "IRR"]
+            ["name" => "Rial", "symbol" => "IRR"]
         );
 
         Rate::create([
-            'first_currency_id' => $btc->id,
-            'second_currency_id' => $tether->id,
-            'ratio' => 1,
-            'internal' => false,
+            'currency_id' => $btc->id,
+            'source_currency_id' => $tether->id,
+            'price' => 1,
+
         ]);
         Rate::create([
-            'first_currency_id' => $btc->id,
-            'second_currency_id' => $irr->id,
-            'ratio' => 1,
-            'internal' => true,
+            'currency_id' => $btc->id,
+            'source_currency_id' => $irr->id,
+            'price' => 1,
         ]);
         Rate::create([
-            'first_currency_id' => $tether->id,
-            'second_currency_id' => $irr->id,
-            'ratio' => 1,
-            'internal' => true,
+            'currency_id' => $tether->id,
+            'source_currency_id' => $irr->id,
+            'price' => 1,
 
         ]);
 
