@@ -12,8 +12,13 @@ class Currency extends Model
 
     protected $guarded = ['id'];
 
-    public function rates(): HasManyThrough
+    public function allRates(): HasManyThrough
     {
-        return $this->hasManyThrough(Rate::class, 'currencies', 'id', 'first_currency_id')->orWhere('second_currency_id', $this->id);
+        return $this->hasManyThrough(Rate::class, Currency::class, 'id', 'currency_id')->orWhere('source_currency_id', $this->id);
+    }
+
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
     }
 }
