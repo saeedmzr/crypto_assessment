@@ -1,0 +1,61 @@
+version: "3.9"
+services:
+    # Application
+    app:
+        build: ./docker/services/app
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        networks:
+            - my-app-net
+    # Web Server
+    web:
+        build: ./docker/services/web
+        working_dir: /var/www
+        volumes:
+            - ./src:/var/www
+        ports:
+            - "8000:80"
+        networks:
+            - my-app-net
+    # Database
+    database:
+        image: docker.arvancloud.ir/mysql:8.0.25
+        volumes:
+            - ./docker/volumes/mysql:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+        ports:
+            - "3307:3306"
+        networks:
+            - my-app-net
+    # Database Management
+    pma:
+        image: docker.arvancloud.ir/phpmyadmin:5.1
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=${DB_HOST}
+            - PMA_USER=${DB_USERNAME}
+            - PMA_PASSWORD=${DB_PASSWORD}
+            - PMA_PORT=${DB_PORT}
+        depends_on:
+            - "database"
+        ports:
+            - "8888:80"
+        networks:
+            - my-app-net
+    # Caching
+    redis:
+        image: docker.arvancloud.ir/redis:alpine
+        volumes:
+            - ./docker/volumes/redis:/data
+        ports:
+            - "6380:6379"
+        networks:
+            - my-app-net
+networks:
+    my-app-net:
+    internal-db-net:
