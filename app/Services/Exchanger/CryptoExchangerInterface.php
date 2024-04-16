@@ -6,5 +6,5 @@ use Illuminate\Http\JsonResponse;
 
 interface CryptoExchangerInterface
 {
-    public function getRate(string $firstSymbol, string $secondSymbol): float|JsonResponse;
+    public function getPrice(string $firstSymbol, string $secondSymbol): float|JsonResponse|array;
 }

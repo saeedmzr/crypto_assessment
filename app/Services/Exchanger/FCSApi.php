@@ -17,8 +17,9 @@ class FCSApi implements CryptoExchangerInterface
         $this->client = new Client();
     }
 
-    public function getRate(string $firstSymbol, string $secondSymbol): float|JsonResponse
+    public function getPrice(string $firstSymbol, string $secondSymbol): float|JsonResponse|array
     {
+        if ($firstSymbol === "USDT") $firstSymbol = "USD";
         if ($secondSymbol === "USDT") $secondSymbol = "USD";
 
         $url = "https://fcsapi.com/api-v3/crypto/latest";
@@ -29,31 +30,31 @@ class FCSApi implements CryptoExchangerInterface
         $response = $this->requester($url, $options);
         try {
             return floatval($response['response'][0]['o']);
+
         } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+
+            return 0;
         }
+
     }
 
     private function requester($url, $options)
     {
 
-        try {
-            $response = $this->client->get($url, [
-                'query' => $options
-            ]);
+        $response = $this->client->get($url, [
+            'query' => $options
+        ]);
 
-            $statusCode = $response->getStatusCode();
-            $responseBody = $response->getBody()->getContents();
+        $statusCode = $response->getStatusCode();
+        $responseBody = $response->getBody()->getContents();
 
-            if ($statusCode === 200) {
-                $data = json_decode($responseBody, true);
-                return $data;
-            } else {
-                return response()->json(['error' => "API request failed with status code: $statusCode"], $statusCode);
-            }
-        } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+        if ($statusCode === 200) {
+            $data = json_decode($responseBody, true);
+            return $data;
+        } else {
+            return response()->json(['error' => "API request failed with status code: $statusCode"], $statusCode);
         }
+
     }
 
 }
