@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string("tracking_code")->nullable();
             $table->float("amount_paid");
             $table->float("amount_received")->default(0);
-            $table->float("rate_state_value")->comment("rate value at time order was created.");
+            $table->float("rate_state_value");
             $table->string("email_address");
             $table->string("status")->default(OrderStatusEnum::getDefaultStatus());
             $table->softDeletes();

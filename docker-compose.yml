@@ -6,6 +6,8 @@ services:
         working_dir: /var/www
         volumes:
             - ./:/var/www
+        networks:
+            - my-app-net
     # Web Server
     web:
         build: ./docker/services/web
@@ -14,6 +16,8 @@ services:
             - ./src:/var/www
         ports:
             - "8000:80"
+        networks:
+            - my-app-net
     # Database
     database:
         image: docker.arvancloud.ir/mysql:8.0.25
@@ -26,6 +30,8 @@ services:
             MYSQL_USER: ${DB_USERNAME}
         ports:
             - "3307:3306"
+        networks:
+            - my-app-net
     # Database Management
     pma:
         image: docker.arvancloud.ir/phpmyadmin:5.1
@@ -39,6 +45,8 @@ services:
             - "database"
         ports:
             - "8888:80"
+        networks:
+            - my-app-net
     # Caching
     redis:
         image: docker.arvancloud.ir/redis:alpine
@@ -46,3 +54,8 @@ services:
             - ./docker/volumes/redis:/data
         ports:
             - "6380:6379"
+        networks:
+            - my-app-net
+networks:
+    my-app-net:
+    internal-db-net:

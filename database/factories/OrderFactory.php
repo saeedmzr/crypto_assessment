@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Rate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,15 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $rateIds = Rate::all()->pluck("id")->toArray();
         return [
-            //
+            'rate_id' => $this->faker->randomElement($rateIds),
+            'amount_paid' => $this->faker->randomDigit(6),
+            'amount_received' => $this->faker->randomDigit(6),
+            'email_address' => $this->faker->unique()->safeEmail(),
+            'rate_state_value' => $this->faker->randomDigitNotZero(),
+            'PhoneNumber' => $phoneNumberInt,
+            'BankAccountNumber' => $this->faker->numerify('####-####-####-####'),
         ];
     }
 }
