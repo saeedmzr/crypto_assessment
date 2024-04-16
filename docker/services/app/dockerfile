@@ -2,7 +2,7 @@ FROM docker.arvancloud.ir/php:8.2-fpm
 
 WORKDIR /var/www
 
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     build-essential \
     curl \
     git \
