@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 
 # Multibyte String
-RUN apt-get update && apt-get install -y libonig-dev && docker-php-ext-install mbstring
+RUN apt-get update && apt-get install -y libonig-dev && docker-php-ext-install mbstring && apt install php8.2-mysql
 
 # Miscellaneous
 RUN docker-php-ext-install bcmath
