@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->string('symbol');
             $table->softDeletes();
             $table->timestamps();
