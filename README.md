@@ -2,7 +2,7 @@
 ## Crypto simple project
 
 
-This repository contains the source code for ordering crypto currency and check price of some currencies.
+This repository contains the source code for ordering crypto currencies and check price of some currencies.
 
 ## Features
 - **User Authentication**
@@ -43,7 +43,10 @@ This repository contains the source code for ordering crypto currency and check 
 #### 7. Run the database migrations:
 `php artisan migrate`
 
-#### 8. Run the server:
+#### 8. Run the database seeders to get our currencies and its rates:
+`php artisan db:seed`
+
+#### 9. Run the server:
 `php artisan serve`
 
 #### Note:
@@ -133,6 +136,8 @@ For example :
 
 #### Once generated, you can access the documentation through the endpoint /api/documentation#/. This provides comprehensive details about the API endpoints and their functionalities.
 
+### TODO:
+#### I should add more unit tests to it. It contains 12 unit test for now that it's not great. All the functionality should be tested. Also it should have `feature` tests as well.
 
 
 
