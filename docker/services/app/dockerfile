@@ -7,7 +7,7 @@ RUN apt update  && apt install -y \
     build-essential \
     curl \
     git \
-     mysqli-dev \
+    php8.2-mysql \
     jpegoptim optipng pngquant gifsicle \
     locales \
     unzip \
