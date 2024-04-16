@@ -2,7 +2,7 @@ FROM docker.arvancloud.ir/php:8.2-fpm
 
 WORKDIR /var/www
 
-RUN apt update && apt-get dist-upgrade && apt install -y \
+RUN apt update && apt-get upgrade && apt install -y \
     mysql-server \
     build-essential \
     curl \
