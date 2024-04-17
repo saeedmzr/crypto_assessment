@@ -136,6 +136,56 @@ For example :
 
 #### Once generated, you can access the documentation through the endpoint /api/documentation#/. This provides comprehensive details about the API endpoints and their functionalities.
 
+### Using Makefiles for Streamlined Development (Optional)
+
+This project leverages a Makefile to automate common Docker Compose tasks and streamline your development workflow. Here's a breakdown of the available commands:
+
+#### Building Images:
+
+`make build`: Rebuilds Docker images for all services defined in docker-compose.yml.
+
+#### Starting/Stopping Services:
+
+`make up`: Starts all services defined in docker-compose.yml.
+
+`make down`: Stops all running services and removes containers.
+
+`make start`: Starts all services in detached mode (background).
+
+`make stop`: Stops all running services.
+
+#### Managing Containers:
+
+`make restart`: Restarts all services (equivalent to down followed by start).
+
+`make remove`: Stops containers and removes them (use with caution).
+#### Viewing Information:
+
+`make logs`: Displays container logs in real-time.
+
+`make stats`: Shows resource usage statistics for running containers.
+
+`make ps`: Lists the status of all containers defined in docker-compose.yml.
+#### Development Workflow:
+
+`make update`: Updates the project code using git pull.
+
+`make run-migrate`: Runs database migrations within the app container.
+
+`make run-migrate-with-seed`: Runs database migrations and seeds the database with sample data (useful for initial setup).
+
+`make run-test`: Executes application tests within the app container.
+`make docs`: Generate documentation for project by `swagger`.
+
+#### Interactive Shell Access:
+
+`make run`: Starts the app container with a bash shell for interactive commands.
+`make exec`: Executes a bash shell within the running app container (similar to docker-compose exec -it app bash).
+#### Additional Notes:
+
+Commands prefixed with @ suppress output from the underlying Docker Compose commands.
+The CONTAINER variable in the Makefile is set to app by default, but you can modify it if your application's primary container has a different name.
+
 ### TODO:
 #### I should add more unit tests to it. It contains 12 unit test for now that it's not great. All the functionality should be tested. Also it should have `feature` tests as well.
 

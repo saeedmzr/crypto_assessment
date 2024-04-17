@@ -70,3 +70,7 @@ run-migrate:
 run-test:
 	@echo "===== Run Migrations ====="
 	docker-compose exec -it ${CONTAINER}  php artisan test
+
+docs:
+	@echo "===== Run Documentation ====="
+	docker-compose exec -it ${CONTAINER}  php artisan l5-swagger:generate
