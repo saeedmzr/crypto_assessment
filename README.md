@@ -4,12 +4,6 @@
 
 This repository contains the source code for ordering crypto currencies and check price of some currencies.
 
-## Features
-- **User Authentication**
-- **Create, read, update, and delete tasks**
-- **Schedule tasks to be automatically completed after 2 days (using Laravel's task scheduling functionality)**
-- **utilizes Laravel's broadcasting functionality to enable real-time updates**
-
 ## Requirements:
 
 - **PHP >= 8.2**
