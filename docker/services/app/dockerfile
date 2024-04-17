@@ -3,11 +3,10 @@ FROM docker.arvancloud.ir/php:8.2-fpm
 WORKDIR /var/www
 
 RUN apt update  && apt install -y \
-    mysql-server \
+    mariadb-server \
     build-essential \
     curl \
     git \
-    php8.2-mysql \
     jpegoptim optipng pngquant gifsicle \
     locales \
     unzip \
@@ -28,7 +27,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 
 # Multibyte String
-RUN apt-get update && apt-get install -y libonig-dev && docker-php-ext-install mbstring && apt install php8.2-mysql
+RUN apt-get update && apt-get install -y libonig-dev && docker-php-ext-install mbstring
 
 # Miscellaneous
 RUN docker-php-ext-install bcmath

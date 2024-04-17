@@ -15,7 +15,7 @@ services:
         volumes:
             - ./src:/var/www
         ports:
-            - "8000:80"
+            - "8002:80"
         networks:
             - my-app-net
     # Database
@@ -29,7 +29,7 @@ services:
             MYSQL_PASSWORD: ${DB_PASSWORD}
             MYSQL_USER: ${DB_USERNAME}
         ports:
-            - "3307:3306"
+            - "3309:3306"
         networks:
             - my-app-net
     # Database Management
@@ -44,7 +44,7 @@ services:
         depends_on:
             - "database"
         ports:
-            - "8888:80"
+            - "8890:80"
         networks:
             - my-app-net
     # Caching
@@ -53,7 +53,7 @@ services:
         volumes:
             - ./docker/volumes/redis:/data
         ports:
-            - "6380:6379"
+            - "6382:6379"
         networks:
             - my-app-net
 networks:
